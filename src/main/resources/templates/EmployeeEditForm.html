@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>empEditForm</title>
+</head>
+
+<body>
+
+	<th:block th:insert="Header.html"></th:block>
+
+	<div class="container-fluid">
+
+		<div class="card">
+
+			<!-- ============== card-header ============== -->
+			<div class="card-header text-center bg-primary text-white">
+				<h5>Employee Edit Form</h5>
+			</div>
+
+			<!-- ============== card-body ============== -->
+			<div class="card-body">
+
+				<form action="/emp/update" method="post" th:object="${empModel}">
+
+					<!-- <p style="color: red;">[[${message}]]</p> -->
+
+					<div class="row p-2">
+						<div class="col-6">
+							<label class="form-label">First Name</label>
+							<input type="text" th:field="*{fname}" class="form-control" required>
+						</div>
+						<div class="col-6">
+							<label class="form-label">last Name</label>
+							<input type="text" th:field="*{lname}" class="form-control" required>
+						</div>
+					</div>
+
+					<div class="row p-2">
+						<div class="col-6">
+							<label class="form-label">Phone</label>
+							<input type="text" th:field="*{phone}" class="form-control" required>
+						</div>
+						<div class="col-6">
+							<label class="form-label">Email</label>
+							<input type="email" th:field="*{email}" class="form-control" required>
+						</div>
+					</div>
+
+					<div class="row p-2">
+						<div class="col-4">
+							<label class="form-label">Gender</label><br>
+							<input type="radio" th:field="*{gender}" value="male" required>Male
+							<input type="radio" th:field="*{gender}" value="female" required>Female
+						</div>
+						<div class="col-4">
+							<label class="form-label">Age</label>
+							<!--<input type="number" th:field="*{age}" class="form-control" required>-->
+							<input type="number" th:field="*{age}" min="0" max="140}" class="form-control" required>
+						</div>
+						<div class="col-4">
+							<label class="form-label">DOB</label>
+							<input type="date" th:field="*{dob}" class="form-control" required>
+						</div>
+					</div>
+
+
+					<div class="row p-2">
+						<div class="col-4">
+							<label class="form-label">Company</label>
+							<input type="text" th:field="*{company}" class="form-control" required>
+						</div>
+						<div class="col-4">
+							<label class="form-label">Post</label>
+							<input type="text" th:field="*{post}" class="form-control" required>
+						</div>
+						<div class="col-4">
+							<label class="form-label">Department</label>
+							<select th:field="*{department}" class="form-control" required>
+								<option value="">Select</option>
+								<option th:each="d:${dList}" th:value="${d.id}">[[${d.deptName}]]</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="row p-2">
+						<div class="col-4">
+							<label class="form-label">Salary</label>
+							<input type="text" th:field="*{salary}" class="form-control" required>
+						</div>
+						<div class="col-4">
+							<label class="form-label">Join Date</label>
+							<input type="date" th:field="*{joinDate}" class="form-control" required>
+						</div>
+						<div class="col-4">
+							<label class="form-label">Country</label>
+							<input type="text" th:field="*{address.country}" class="form-control" required>
+						</div>
+					</div>
+
+					<div class="row p-2">
+						<div class="col-4">
+							<label class="form-label">City</label>
+							<input type="text" th:field="*{address.city}" class="form-control" required>
+						</div>
+						<div class="col-4">
+							<label class="form-label">State</label>
+							<select th:field="*{address.state}" class="form-control" required>
+
+								<option value="">Select</option>
+								<option value="state 1">State-1</option>
+								<option value="state 2">State-2</option>
+								<option value="state 3">State-3</option>
+								<option value="state 4">State-4</option>
+								<option value="state 5">State-5</option>
+								<option value="state 6">State-6</option>
+								<option value="state 7">State-7</option>
+
+							</select>
+						</div>
+						<div class="col-4">
+							<label class="form-label">zipcode</label>
+							<input type="text" th:field="*{address.zipcode}" class="form-control" required>
+						</div>
+					</div>
+
+					<div class="row p-2">
+						<div class="col-12">
+							<label class="form-label">Projects</label><br>
+							<input type="checkbox" th:field="*{projects}" value="project-1">Project 1
+							<input type="checkbox" th:field="*{projects}" value="project-2">Project 2
+							<input type="checkbox" th:field="*{projects}" value="project-3">Project 3
+							<input type="checkbox" th:field="*{projects}" value="project-4">Project 4
+							<input type="checkbox" th:field="*{projects}" value="project-5">Project 5
+							<input type="checkbox" th:field="*{projects}" value="project-6">Project 6
+						</div>
+					</div>
+
+					<div class="row p-2">
+						<div class="col-12">
+							<input type="submit" value="Update" class="btn btn-success">
+						</div>
+					</div>
+					
+					<input type="hidden" th:field="*{id}">
+					<input type="hidden" th:field="*{address.id}">
+
+
+				</form>
+
+
+			</div>
+
+			<!-- ============== card-header ============== -->
+			<div class="card-footer text-center bg-warning text-white">copyright@2024</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

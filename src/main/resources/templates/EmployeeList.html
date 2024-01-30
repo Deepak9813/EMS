@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>empList</title>
+</head>
+
+<body>
+
+	<th:block th:insert="Header.html"></th:block>
+
+	<div class="container-fluid">
+
+		<div class="card">
+
+			<!-- ============== card-header ============== -->
+			<div class="card-header text-center bg-primary text-white">
+				<h5>Employee List</h5>
+			</div>
+
+			<!-- ============== card-body ============== -->
+			<div class="card-body">
+
+				<table class="table" id="empTable">
+
+					<div class="pb-2">
+					<a href="/emp/excel"> <input type="submit" value="Excel" class="btn btn-success"></a>
+					<a href="/emp/pdf"> <input type="submit" value="Pdf" class="btn btn-primary"></a>
+					</div>
+
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Company</th>
+							<th>Post</th>
+							<th>Department</th>
+							<th>Country</th>
+							<th>City</th>
+							<th>Phone</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="e:${eList}">
+							<!-- <td>[[${e.fname}]] [[${e.lname}]]</td> -->
+							<td>[[${e.fname}]] &nbsp; [[${e.lname}]]</td>
+							<td>[[${e.company}]]</td>
+							<td>[[${e.post}]]</td>
+							<td>[[${e.department.deptName}]]</td>
+							<td>[[${e.address.country}]]</td>
+							<td>[[${e.address.city}]]</td>
+							<td>[[${e.phone}]]</td>
+							<td>
+								<a th:href="@{/emp/edit(id=${e.id})}"> <input type="submit" value="Edit" class="btn btn-success"></a>
+								<a th:href="@{'/emp/delete/' +${e.id}}" onclick="return confirm('Are you sure you want to delete?');"> <input type="submit" value="Delete"
+										class="btn btn-danger"></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+
+			<!-- ============== card-header ============== -->
+			<div class="card-footer text-center bg-warning text-white">copyright@2024</div>
+
+		</div>
+
+	</div>
+
+	<script>
+
+		$(document).ready(function () {
+			$('#empTable').DataTable();
+		});
+
+	</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>deptList</title>
+</head>
+
+<body>
+
+	<th:block th:insert="Header.html"></th:block>
+
+	<div class="container-fluid">
+
+		<div class="card">
+
+			<!-- ============== card-header ============== -->
+			<div class="card-header text-center bg-primary text-white">
+				<h5>Department List</h5>
+			</div>
+
+			<!-- ============== card-body ============== -->
+			<div class="card-body">
+
+				<table class="table" id="deptTable">
+
+					<div class="pb-2">
+						<a href="/dept/excel"> <input type="submit" value="Excel" class="btn btn-success"></a>
+						<a href="/dept/pdf"> <input type="submit" value="Pdf" class="btn btn-primary"></a>
+					</div>
+
+					<thead>
+						<tr>
+							<th>Department Name</th>
+							<th>Department Head(HOD)</th>
+							<th>Department Phone</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="d:${dList}">
+							<td>[[${d.deptName}]]</td>
+							<td>[[${d.deptHead}]]</td>
+							<td>[[${d.deptPhone}]]</td>
+							<td>
+								<a th:href="@{/dept/edit(id=${d.id})}"> <input type="submit" value="Edit" class="btn btn-success"></a>
+							<!-- ========	<a th:href="@{'/dept/delete/' +${d.id}}" onclick="return confirm('Are you sure you want to delete?');"> <input type="submit"value="Delete" class="btn btn-danger"></a>
+							
+						=========	-->
+						<!-- =================Or  using next method======================= -->	
+					<a th:href="@{'/dept/delete/' + ${d.id}}" onclick="return deleteOrNot();">
+   						<input type="submit" value="Delete" class="btn btn-danger"></a>
+							</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+
+			<!-- ============== card-header ============== -->
+			<div class="card-footer text-center bg-warning text-white">copyright@2024</div>
+
+		</div>
+
+	</div>
+
+	<script>
+
+		$(document).ready(function () {
+			$('#deptTable').DataTable();
+		});
+
+	</script>
+	
+	
+	
+	<script>
+    function deleteOrNot() {
+        var msg = confirm('Are you sure you want to delete?');
+        return msg;
+    }
+</script>
+	
+
+</body>
+
+</html>

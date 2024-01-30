@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>gallery</title>
+</head>
+<body>
+	
+	<th:block th:insert="Header.html"></th:block>
+	
+	<div class="container-fluid">
+		
+		<div class="card">
+			
+			<!-- ============= card-header ================= -->
+			<div class="card-header text-center bg-primary text-white"><h5>Photo Gallery</h5></div>
+			
+			<!-- ============= card-body ================= -->
+			<div class="card-body">
+				
+				<span th:each="imageName:${imgNameList}">
+					
+					<a th:href="@{'/images/' +${imageName}}" target="_blank">
+					<img th:src="@{'/images/' +${imageName}}" height="200px" width="300px" class="p-1">
+					</a>
+					
+				</span>
+				
+			</div>
+			
+			<!-- ============= card-footer ================= -->
+			<div class="card-footer text-center bg-warning text-white">copyright@2024</div>
+			
+		</div>
+		
+	</div>
+
+</body>
+</html>
